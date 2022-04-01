@@ -6,7 +6,7 @@ import './App.css';
 
 function App() {
     return (
-        <MantineProvider theme={{ fontFamily: "Rubik" }}>
+        <MantineProvider theme={{ fontFamily: "Rubik", lineHeight: 1.5 }}>
             <div className="App">
                 <Main />
             </div>

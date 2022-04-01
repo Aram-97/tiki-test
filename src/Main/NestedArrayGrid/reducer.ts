@@ -5,9 +5,9 @@ import { DnDGridAction, ACTION_TYPE } from "../DnDGridProvider/model";
 import { NestedArrayGridState } from "./context";
 import { CellModel } from "../DnDCell/model";
 
-type ReducerType = React.Reducer<NestedArrayGridState, DnDGridAction>;
-
 const createGrid = (size: number): CellModel[][] => {
+    if (typeof size !== 'number' || size < 1) return [];
+    console.time('createGrid');
     const rows = new Array(size).fill(null);
 
     const grid = rows.map((_, rowIndex) => {
@@ -16,15 +16,16 @@ const createGrid = (size: number): CellModel[][] => {
         return cols.map((_, colIndex) => {
             const isEvenColumn = (colIndex + 1) % 2 === 0;
             const normalNumber = colIndex * size + rowIndex + 1;
-            const reverseNumber = (colIndex + 1) * size - rowIndex;
+            const reversedNumber = (colIndex + 1) * size - rowIndex;
 
             return {
                 id: nanoid(),
-                label: String(isEvenColumn ? reverseNumber : normalNumber),
+                label: String(isEvenColumn ? reversedNumber : normalNumber),
             };
         });
     });
 
+    console.timeEnd('createGrid');
     return grid;
 };
 
@@ -43,6 +44,8 @@ const getCellPosition = (grid: CellModel[][], id: string): [number, number] => {
 
     return [rowPos, colPos];
 };
+
+type ReducerType = React.Reducer<NestedArrayGridState, DnDGridAction>;
 
 const reducer: ReducerType = (state, action) => {
     switch (action.type) {
