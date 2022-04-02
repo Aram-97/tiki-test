@@ -11,9 +11,8 @@ export const PLACEHOLDER = {
 };
 
 export const GRID_VERSION = {
-    FLAT: { value: 'FLAT', label: 'Grid with flat array' },
-    NESTED: { value: 'NESTED', label: 'Grid with nested array' },
-    BEAUTIFUL: { value: 'BEAUTIFUL', label: 'Grid using react-beautiful-dnd'},
+    FLAT: { value: 'FLAT', label: 'Grid with flat array', color: 'blue' },
+    NESTED: { value: 'NESTED', label: 'Grid with nested array', color: 'teal' },
 }
 
 export const DEFAULT_VALUES: FormDataModel = {

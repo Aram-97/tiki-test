@@ -49,6 +49,7 @@ const SetupForm: React.FC<Props> = memo(({ handleSubmit }) => {
                 <Group align="flex-start">
                     <NumberInput
                         required
+                        autoComplete="off"
                         stepHoldDelay={500}
                         stepHoldInterval={100}
                         label={LABEL.ENTER_GRID_SIZE}

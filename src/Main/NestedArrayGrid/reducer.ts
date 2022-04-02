@@ -2,11 +2,11 @@ import { produce } from "immer";
 import { nanoid } from "nanoid";
 
 import { DnDGridAction, ACTION_TYPE } from "../DnDGridProvider/model";
-import { NestedArrayGridState } from "./context";
+import { INITIAL_STATE, NestedArrayGridState } from "./context";
 import { CellModel } from "../DnDCell/model";
 
 const createGrid = (size: number): CellModel[][] => {
-    if (typeof size !== 'number' || size < 1) return [];
+    if (typeof size !== 'number' || size < 1) return INITIAL_STATE.grid;
     console.time('createGrid');
     const rows = new Array(size).fill(null);
 

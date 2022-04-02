@@ -7,7 +7,7 @@ export interface NestedArrayGridState {
 }
 
 export const INITIAL_STATE: NestedArrayGridState = {
-    grid: [],
+    grid: [[]],
 };
 
 export const NestedArrayGridContext =
