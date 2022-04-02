@@ -1,12 +1,19 @@
+import { CellModel } from "../DnDCell/model";
+import { GridVersionType } from "../model";
+
+export type FlatArrayGridModel = CellModel[];
+export type NestedArrayGridModel = CellModel[][];
+
 export enum ACTION_TYPE {
     CREATE_GRID = "CREATE_GRID",
     SWAP_CELL = "SWAP_CELL",
 }
 
-interface SetSizeAction {
+interface CreateGridAction {
     type: ACTION_TYPE.CREATE_GRID;
     payload: {
         size: number;
+        version: GridVersionType;
     };
 }
 
@@ -18,4 +25,4 @@ interface SwapCellAction {
     };
 }
 
-export type DnDGridAction = SetSizeAction | SwapCellAction;
+export type DnDGridAction = CreateGridAction | SwapCellAction;

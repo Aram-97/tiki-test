@@ -1,29 +1,22 @@
 import React, { Dispatch, memo, useReducer } from "react";
 
-import { NestedArrayGridState } from "../NestedArrayGrid/context";
+import { DnDGridContext, INITIAL_STATE } from './context';
 import { DnDGridAction } from "./model";
-
-interface Props {
-    initial: NestedArrayGridState;
-    context: React.Context<NestedArrayGridState>;
-    reducer: React.Reducer<NestedArrayGridState, DnDGridAction>;
-}
+import reducer from './reducer';
 
 export const DnDGridDispatch = React.createContext<Dispatch<DnDGridAction>>(
     () => {}
 );
 
-const DnDGridProvider: React.FC<Props> = memo(
-    ({ initial, context: Context, reducer, children }) => {
-        const [state, dispatch] = useReducer(reducer, initial);
+const DnDGridProvider: React.FC = memo(({ children }) => {
+    const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
 
-        return (
-            <DnDGridDispatch.Provider value={dispatch}>
-                <Context.Provider value={state}>{children}</Context.Provider>
-            </DnDGridDispatch.Provider>
-        );
-    }
-);
+    return (
+        <DnDGridDispatch.Provider value={dispatch}>
+            <DnDGridContext.Provider value={state}>{children}</DnDGridContext.Provider>
+        </DnDGridDispatch.Provider>
+    );
+});
 
 DnDGridDispatch.displayName = "DnDGridDispatch";
 DnDGridProvider.displayName = "DnDGridProvider";

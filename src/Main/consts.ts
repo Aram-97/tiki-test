@@ -1,8 +1,8 @@
-import { FIELD, FormDataModel } from './model';
+import { FIELD, FormDataModel, GridVersionData, GridVersionType } from "./model";
 
 export const LABEL = {
     ENTER_GRID_SIZE: "Enter a grid size",
-    SELECT_VERSION: "Select a version",
+    SELECT_VERSION: "Select a grid version",
     GENERATE: "Generate",
 };
 
@@ -10,12 +10,12 @@ export const PLACEHOLDER = {
     SIZE: "Size",
 };
 
-export const GRID_VERSION = {
-    FLAT: { value: 'FLAT', label: 'Grid with flat array', color: 'blue' },
-    NESTED: { value: 'NESTED', label: 'Grid with nested array', color: 'teal' },
-}
+export const GRID_VERSION: Record<GridVersionType, GridVersionData> = {
+    FLAT: { value: "FLAT", label: "Grid with flat array as data", color: "blue" },
+    NESTED: { value: "NESTED", label: "Grid with nested array as data", color: "teal" },
+};
 
 export const DEFAULT_VALUES: FormDataModel = {
-    [FIELD.SIZE]: 5,
     [FIELD.VERSION]: GRID_VERSION.FLAT.value,
+    [FIELD.SIZE]: 5,
 };
