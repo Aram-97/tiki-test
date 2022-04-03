@@ -20,6 +20,8 @@ const SetupForm: React.FC = memo(() => {
         },
     });
 
+    const color = GRID_VERSION[form.values.version].color;
+
     const generateGrid = (values: typeof form.values) => {
         dispatch({ type: ACTION_TYPE.CREATE_GRID, payload: values });
     };
@@ -34,37 +36,36 @@ const SetupForm: React.FC = memo(() => {
                 <RadioGroup
                     required
                     size="sm"
+                    color={color}
                     orientation="vertical"
                     label={LABEL.SELECT_VERSION}
-                    color={GRID_VERSION[form.values.version].color}
                     {...form.getInputProps(FIELD.VERSION)}
                 >
                     {Object.values(GRID_VERSION).map(({ value, label }) => (
-                        <Radio
-                            key={value}
-                            value={value}
-                            label={label}
-                            color={GRID_VERSION[form.values.version].color}
-                        />
+                        <Radio key={value} value={value} label={label} color={color} />
                     ))}
                 </RadioGroup>
 
                 <Group align="flex-start">
                     <NumberInput
                         required
+                        color={color}
                         autoComplete="off"
                         stepHoldDelay={500}
                         stepHoldInterval={100}
                         label={LABEL.ENTER_GRID_SIZE}
                         placeholder={PLACEHOLDER.SIZE}
                         {...form.getInputProps(FIELD.SIZE)}
+                        styles={{
+                            input: {
+                                "&:focus": {
+                                    borderColor: color,
+                                },
+                            },
+                        }}
                     />
 
-                    <Button
-                        type="submit"
-                        disabled={isGridWorkerRunning}
-                        color={GRID_VERSION[form.values.version].color}
-                    >
+                    <Button type="submit" color={color} disabled={isGridWorkerRunning}>
                         {LABEL.GENERATE}
                     </Button>
                 </Group>
