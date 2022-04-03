@@ -2,6 +2,7 @@
   "name": "tiki-test",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://aram-97.github.io/tiki-test",
   "dependencies": {
     "@mantine/core": "^4.1.0",
     "@mantine/form": "^4.1.0",
@@ -27,6 +28,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -52,5 +55,6 @@
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.24",
+    "gh-pages": "^3.2.3"
   }
 }
