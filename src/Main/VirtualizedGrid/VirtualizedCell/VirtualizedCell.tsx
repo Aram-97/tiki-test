@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import { useSpring, animated, config } from "react-spring";
 import { VirtualItem } from "react-virtual";
 
 import { CELL } from "../../DnDCell/consts";
@@ -6,12 +7,21 @@ import { CELL } from "../../DnDCell/consts";
 interface Props {
     virtualRow: VirtualItem;
     virtualCol: VirtualItem;
+    hasGridMounted?: boolean;
 }
 
 const VirtualizedCell: React.FC<Props> = memo(
-    ({ virtualRow, virtualCol, children }) => {
+    ({ virtualRow, virtualCol, hasGridMounted, children }) => {
+        const styles = useSpring({
+            delay: (virtualRow.index + virtualCol.index) * (hasGridMounted ? 0 : 50),
+            config: config.wobbly,
+            from: { scale: 0, zIndex: 1 },
+            to: { scale: 1, zIndex: 0 },
+            immediate: (key) => key === "zIndex",
+        });
+
         return (
-            <div
+            <animated.div
                 style={{
                     top: 0,
                     left: 0,
@@ -20,10 +30,11 @@ const VirtualizedCell: React.FC<Props> = memo(
                     width: `${virtualCol.size}px`,
                     height: `${virtualRow.size}px`,
                     transform: `translateX(${virtualCol.start}px) translateY(${virtualRow.start}px)`,
+                    ...styles,
                 }}
             >
                 {children}
-            </div>
+            </animated.div>
         );
     },
     (prevProps, nextProps) => {

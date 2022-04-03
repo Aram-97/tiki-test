@@ -19,8 +19,11 @@ type ReducerType = React.Reducer<DnDGridState, DnDGridAction>;
 const reducer: ReducerType = (state, action) => {
     switch (action.type) {
         case ACTION_TYPE.CREATE_GRID: {
+            const { size, version } = action.payload;
+
+            if (state.size === size && state.version === version) return state;
+
             return produce(state, (draft) => {
-                const { size, version } = action.payload;
                 draft.version = version;
                 draft.size = size;
 

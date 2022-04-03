@@ -2,10 +2,10 @@ import React, { RefCallback, useCallback, memo, useContext } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { MantineColor } from "@mantine/core";
 
-import { ACTION_TYPE } from '../DnDGridProvider/model';
-import { DnDGridDispatch } from '../DnDGridProvider';
-import { CellModel } from "./model";
+import { ACTION_TYPE } from "../DnDGridProvider/model";
+import { DnDGridDispatch } from "../DnDGridProvider";
 import { ITEM_TYPE } from "./consts";
+import { CellModel } from "./model";
 import StyledDnDCell from "./styles";
 
 interface Props extends CellModel {

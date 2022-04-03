@@ -16,7 +16,7 @@ const NestedArrayGrid: React.FC = () => {
         <VirtualizedGrid
             size={size}
             color={GRID_VERSION.NESTED.color}
-            render={({ virtualRows, virtualCols }) => {
+            render={({ virtualRows, virtualCols, hasGridMounted }) => {
                 return virtualRows.map((row) => {
                     return (
                         <React.Fragment key={row.index}>
@@ -26,9 +26,10 @@ const NestedArrayGrid: React.FC = () => {
 
                                 return (
                                     <VirtualizedCell
-                                        key={cell.id}
                                         virtualRow={row}
                                         virtualCol={col}
+                                        hasGridMounted={hasGridMounted}
+                                        key={`${row.index}-${col.index}-${cell.id}`}
                                     >
                                         <DnDCell {...cell} color={GRID_VERSION.NESTED.color} />
                                     </VirtualizedCell>

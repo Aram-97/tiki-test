@@ -1,6 +1,7 @@
 import styled from "styled-components/macro";
 import { DEFAULT_THEME, MantineColor } from "@mantine/core";
 
+
 import { CELL } from "./consts";
 
 interface Props {
@@ -14,7 +15,7 @@ const DnDCell = styled.div<Props>`
     cursor: grab;
     display: grid;
     font-weight: 500;
-    border-radius: 4px;
+    border-radius: 8px;
     place-items: center;
     width: ${CELL.SIZE}px;
     height: ${CELL.SIZE}px;

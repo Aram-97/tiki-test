@@ -16,7 +16,7 @@ const FlatArrayGrid: React.FC = () => {
         <VirtualizedGrid
             size={size}
             color={GRID_VERSION.FLAT.color}
-            render={({ virtualRows, virtualCols }) => {
+            render={({ virtualRows, virtualCols, hasGridMounted }) => {
                 return virtualCols.map((col) => {
                     return (
                         <React.Fragment key={col.index}>
@@ -29,11 +29,15 @@ const FlatArrayGrid: React.FC = () => {
 
                                 return (
                                     <VirtualizedCell
-                                        key={cell.id}
                                         virtualRow={row}
                                         virtualCol={col}
+                                        hasGridMounted={hasGridMounted}
+                                        key={`${row.index}-${col.index}-${cell.id}`}
                                     >
-                                        <DnDCell {...cell} color={GRID_VERSION.FLAT.color} />
+                                        <DnDCell
+                                            {...cell}
+                                            color={GRID_VERSION.FLAT.color}
+                                        />
                                     </VirtualizedCell>
                                 );
                             })}
